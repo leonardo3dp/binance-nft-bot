@@ -1,4 +1,7 @@
-// Client
+// [Settings]
+const shouldClickMax = true; // Should we buy max amount of NFT clicking to "Max" button
+
+// [Client Scripts]
 
 let isMaxClicked = false;
 let isBuyClicked = false;
