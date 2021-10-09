@@ -7,7 +7,6 @@ let isMaxClicked = false;
 let isBuyClicked = false;
 let isSubmitClicked = false;
 
-
 // Defines document root, body as default
 const appRoot = () => {
     return document.getElementsByTagName('body')[0];
@@ -59,10 +58,14 @@ const checkSubmitButton = (label) => {
 
 // Defines main function for monitoring presence of buttons on the page
 const runWatchDog = (timeout = 0) => {
-    if (checkMaxButton() && !isMaxClicked) {
-        console.log('Clicked "Max"');
-        checkMaxButton().focus();
-        setTimeout(checkMaxButton().click(), 2);
+    if(shouldClickMax) {
+        if (checkMaxButton() && !isMaxClicked) {
+            console.log('Clicked "Max"');
+            checkMaxButton().focus();
+            setTimeout(checkMaxButton().click(), 2);
+            isMaxClicked = true;
+        }
+    } else {
         isMaxClicked = true;
     }
 
