@@ -1,5 +1,5 @@
 // [Settings] //
-const shouldClickMax = true; // Should we buy max amount of NFT clicking to "Max" button
+const shouldClickMax = false; // Should we buy max amount of NFT clicking to "Max" button
 
 // [Client Scripts] //
 
@@ -58,9 +58,9 @@ const checkSubmitButton = (label) => {
 
 // Defines main function for monitoring presence of buttons on the page
 const runWatchDog = (timeout = 0) => {
-    if(shouldClickMax) {
+    if(shouldClickMax && !isMaxClicked) {
         if (checkMaxButton() && !isMaxClicked) {
-            console.log('Clicked "Max"');
+            console.warn('Clicked "Max"');
             checkMaxButton().focus();
             setTimeout(checkMaxButton().click(), 2);
             isMaxClicked = true;
@@ -70,14 +70,14 @@ const runWatchDog = (timeout = 0) => {
     }
 
     if(checkBuyButton() && isMaxClicked && !isBuyClicked) {
-        console.log('Clicked "Buy"');
+        console.warn('Clicked "Buy"');
         checkBuyButton().focus();
         setTimeout(checkBuyButton().click(), 6);
         isBuyClicked = true
     }
 
     if(checkSubmitButton() && isMaxClicked && isBuyClicked && !isSubmitClicked) {
-        console.log('Clicked "Submit"');
+        console.warn('Clicked "Submit"');
         checkSubmitButton().focus();
         setTimeout(checkSubmitButton().click(), 8);
         isSubmitClicked = true
