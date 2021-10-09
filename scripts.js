@@ -1,16 +1,19 @@
-// [Settings]
+// [Settings] //
 const shouldClickMax = true; // Should we buy max amount of NFT clicking to "Max" button
 
-// [Client Scripts]
+// [Client Scripts] //
 
 let isMaxClicked = false;
 let isBuyClicked = false;
 let isSubmitClicked = false;
 
+
+// Defines document root, body as default
 const appRoot = () => {
     return document.getElementsByTagName('body')[0];
 }
 
+// Defines function for checking Max Button
 const checkMaxButton = () => {
     const searchLabel = `Макс`;
 
@@ -25,6 +28,7 @@ const checkMaxButton = () => {
     return false
 }
 
+// Defines common function for checking button with custom inner text value
 const checkButton = (label) => {
     const searchLabel = label;
 
@@ -39,18 +43,21 @@ const checkButton = (label) => {
     return false
 }
 
-const checkBuyButton = () => {
-    const searchLabel = `Купить`;
+// Defines Buy Button
+const checkBuyButton = (label) => {
+    const searchLabel = label || `Купить`;
 
     return checkButton(searchLabel);
 }
 
-const checkSubmitButton = () => {
-    const searchLabel = `Подтвердить`;
+// Defines Submit Button
+const checkSubmitButton = (label) => {
+    const searchLabel = label || `Подтвердить`;
 
     return checkButton(searchLabel);
 }
 
+// Defines main function for monitoring presence of buttons on the page
 const runWatchDog = (timeout = 0) => {
     if (checkMaxButton() && !isMaxClicked) {
         console.log('Clicked "Max"');
