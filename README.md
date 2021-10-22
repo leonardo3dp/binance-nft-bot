@@ -10,6 +10,8 @@ No external libraries are needed. Runs from browser's console.
 
 Usage is pretty simple.
 
+Before the sale starts (1 minute or less), follow the steps described below.
+
 1. Go to the browser console: 
 
 >**Firefox:**
