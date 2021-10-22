@@ -8,7 +8,7 @@ const appRoot = () => {
 // Creates a new button Submit
 function createButtonSubmit(label) {
     const button = document.createElement('button');
-    button.innerText = label || `Подтвердить`
+    button.innerText = label || `Submit`
     button.addEventListener('click', () => {
         console.warn(`Clicked ${button.innerText} `)
     })
@@ -19,7 +19,7 @@ function createButtonSubmit(label) {
 // Creates a new button Max
 function createButtonMax(label) {
     const button = document.createElement('div');
-    button.innerText = label || `Макс`
+    button.innerText = label || `Max`
     button.addEventListener('click', () => {
         console.warn(`Clicked ${button.innerText} `)
     })
@@ -30,7 +30,7 @@ function createButtonMax(label) {
 // Creates a new button buy
 function createButtonBuy(label) {
     const button = document.createElement('button');
-    button.innerText = label || `Купить`
+    button.innerText = label || `Buy`
     button.addEventListener('click', () => {
         console.warn(`Clicked ${button.innerText} `)
     })

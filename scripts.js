@@ -1,5 +1,9 @@
 // [Settings] //
 const shouldClickMax = false; // Should we buy max amount of NFT clicking to "Max" button
+const MAX_BUTTON_TIMEOUT = 2;
+const BUY_BUTTON_TIMEOUT = 6;
+const SUBMIT_BUTTON_TIMEOUT = 8;
+const MAX_CONTENT_LENGTH_IN_BLOCK = 20;
 
 // [Client Scripts] //
 
@@ -14,12 +18,12 @@ const appRoot = () => {
 
 // Defines function for checking Max Button
 const checkMaxButton = () => {
-    const searchLabel = `Макс`;
+    const searchLabel = `Max`;
 
     const divs = appRoot().getElementsByTagName('div');
 
     for (let i = 0; i < divs.length; i++) {
-        if(divs[i].textContent.length < 20 && divs[i].textContent.includes(searchLabel)) {
+        if(divs[i].textContent.length < MAX_CONTENT_LENGTH_IN_BLOCK && divs[i].textContent.includes(searchLabel)) {
             return divs[i].lastElementChild.lastElementChild;
         }
     }
@@ -44,14 +48,14 @@ const checkButton = (label) => {
 
 // Defines Buy Button
 const checkBuyButton = (label) => {
-    const searchLabel = label || `Купить`;
+    const searchLabel = label || `Buy`;
 
     return checkButton(searchLabel);
 }
 
 // Defines Submit Button
 const checkSubmitButton = (label) => {
-    const searchLabel = label || `Подтвердить`;
+    const searchLabel = label || `Submit`;
 
     return checkButton(searchLabel);
 }
@@ -62,7 +66,7 @@ const runWatchDog = (timeout = 0) => {
         if (checkMaxButton() && !isMaxClicked) {
             console.warn('Clicked "Max"');
             checkMaxButton().focus();
-            setTimeout(checkMaxButton().click(), 2);
+            setTimeout(() => checkMaxButton().click(), MAX_BUTTON_TIMEOUT);
             isMaxClicked = true;
         }
     } else {
@@ -72,14 +76,14 @@ const runWatchDog = (timeout = 0) => {
     if(checkBuyButton() && isMaxClicked && !isBuyClicked) {
         console.warn('Clicked "Buy"');
         checkBuyButton().focus();
-        setTimeout(checkBuyButton().click(), 6);
+        setTimeout(() => checkBuyButton().click(), BUY_BUTTON_TIMEOUT);
         isBuyClicked = true
     }
 
     if(checkSubmitButton() && isMaxClicked && isBuyClicked && !isSubmitClicked) {
         console.warn('Clicked "Submit"');
         checkSubmitButton().focus();
-        setTimeout(checkSubmitButton().click(), 8);
+        setTimeout(() => checkSubmitButton().click(), SUBMIT_BUTTON_TIMEOUT);
         isSubmitClicked = true
     }
 
